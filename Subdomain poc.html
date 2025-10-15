@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subdomain Takeover PoC - Ghost</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .poc-header {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .vulnerability-chain {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-left: 4px solid #dc3545;
+            margin: 20px 0;
+        }
+        .evidence {
+            background-color: #f0f8ff;
+            padding: 15px;
+            border-left: 4px solid #2196F3;
+            margin: 20px 0;
+            font-family: monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="poc-header">
+        <h1>Subdomain Takeover Proof of Concept</h1>
+        <p><strong>Vulnerable Subdomain:</strong> ghssm.tooling.travix.com</p>
+        <p><strong>Date:</strong> <span id="currentDate"></span></p>
+    </div>
+
+    <div class="vulnerability-chain">
+        <h2>Vulnerability Chain</h2>
+        <ol>
+            <li><strong>Dangling CNAME Record:</strong> The subdomain <code>ghssm.tooling.travix.com</code> has a CNAME record pointing to <code>xivart.github.io</code>.</li>
+            <li><strong>Unclaimed Resource:</strong> The target GitHub Pages site (<code>xivart.github.io</code>) was not actively hosting content.</li>
+            <li><strong>Successful Takeover:</strong> This page is served from a controlled GitHub Pages repository, proving the subdomain is vulnerable.</li>
+        </ol>
+    </div>
+
+    <div>
+        <h2>Impact Assessment</h2>
+        <p>This vulnerability allows an attacker to:</p>
+        <ul>
+            <li>Host malicious content on a trusted company subdomain.</li>
+            <li>Steal cookies and sensitive user information.</li>
+            <li>Conduct phishing attacks that appear legitimate.</li>
+        </ul>
+    </div>
+
+    <div class="evidence">
+        <h3>Evidence of Takeover</h3>
+        <p>This HTML file is being served from the subdomain: <strong>ghssm.tooling.travix.com</strong></p>
+        <p>DNS CNAME record points to: <strong id="cnameTarget">xivart.github.io</strong></p>
+        <p>Controlled by GitHub repository: <strong>[Your GitHub Username]/xivart.github.io</strong></p>
+        <!-- Hidden proof for validation -->
+        <div id="hiddenProof" style="display: none;">
+            <!-- Unique identifier for your PoC -->
+            Subdomain Takeover PoC - H1:0xghostx0 - 2025-10-15
+        </div>
+    </div>
+
+    <div>
+        <p><em>This is a security research proof of concept. No malicious action is intended.</em></p>
+    </div>
+
+    <script>
+        // Set the current date
+        document.getElementById('currentDate').textContent = new Date().toDateString();
+        
+        // You can add additional JavaScript here if needed for demonstration
+        console.log('Subdomain Takeover PoC loaded for ghssm.tooling.travix.com');
+    </script>
+</body>
+</html>
